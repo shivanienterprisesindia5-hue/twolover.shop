@@ -1,0 +1,1386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kids Wear Store - Premium Collection</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #f5f5f5;
+            color: #333;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #2874f0 0%, #1a5fd1 100%);
+            color: white;
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo i {
+            font-size: 32px;
+        }
+
+        .search-bar {
+            flex: 1;
+            max-width: 600px;
+            margin: 0 30px;
+            position: relative;
+        }
+
+        .search-bar input {
+            width: 100%;
+            padding: 12px 45px 12px 20px;
+            border: none;
+            border-radius: 30px;
+            font-size: 15px;
+            outline: none;
+        }
+
+        .search-bar button {
+            position: absolute;
+            right: 5px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: #2874f0;
+            color: white;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+        }
+
+        .header-icons {
+            display: flex;
+            gap: 25px;
+            align-items: center;
+        }
+
+        .header-icons a {
+            color: white;
+            text-decoration: none;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-size: 13px;
+            gap: 3px;
+        }
+
+        .header-icons i {
+            font-size: 22px;
+        }
+
+        .cart-count {
+            background: #ff4444;
+            color: white;
+            font-size: 11px;
+            padding: 2px 6px;
+            border-radius: 10px;
+            position: absolute;
+            top: -5px;
+            right: -5px;
+        }
+
+        .cart-icon {
+            position: relative;
+        }
+
+        /* Banner */
+        .banner {
+            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a5a 50%, #d63031 100%);
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .banner h1 {
+            font-size: 48px;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .banner p {
+            font-size: 20px;
+            opacity: 0.95;
+        }
+
+        /* Category Filter */
+        .filter-section {
+            background: white;
+            padding: 20px;
+            margin: 20px auto;
+            max-width: 1400px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .filter-section label {
+            font-weight: 600;
+            color: #555;
+        }
+
+        .filter-section select, .filter-section button {
+            padding: 10px 20px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .filter-section select:focus {
+            border-color: #2874f0;
+            outline: none;
+        }
+
+        .filter-section button {
+            background: #2874f0;
+            color: white;
+            border: none;
+        }
+
+        .filter-section button:hover {
+            background: #1a5fd1;
+        }
+
+        /* Products Grid */
+        .products-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .section-title {
+            font-size: 28px;
+            margin-bottom: 25px;
+            color: #333;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-title::after {
+            content: '';
+            flex: 1;
+            height: 2px;
+            background: linear-gradient(to right, #2874f0, transparent);
+            margin-left: 10px;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        /* Product Card */
+        .product-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .product-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+        }
+
+        .product-image {
+            position: relative;
+            height: 300px;
+            overflow: hidden;
+            background: #f8f8f8;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .product-card:hover .product-image img {
+            transform: scale(1.08);
+        }
+
+        .badge {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            z-index: 2;
+        }
+
+        .badge-sale {
+            background: #ff4444;
+            color: white;
+        }
+
+        .badge-new {
+            background: #00c853;
+            color: white;
+        }
+
+        .wishlist-btn {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+            transition: all 0.3s;
+            z-index: 2;
+        }
+
+        .wishlist-btn:hover {
+            background: #ff4444;
+            color: white;
+        }
+
+        .product-info {
+            padding: 18px;
+        }
+
+        .product-brand {
+            color: #888;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 5px;
+        }
+
+        .product-name {
+            font-size: 16px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 10px;
+            line-height: 1.4;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        /* Rating Stars */
+        .rating-section {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 12px;
+        }
+
+        .stars {
+            display: flex;
+            gap: 2px;
+        }
+
+        .stars i {
+            font-size: 14px;
+            color: #ddd;
+        }
+
+        .stars i.filled {
+            color: #ffb400;
+        }
+
+        .stars i.half {
+            color: #ffb400;
+            position: relative;
+        }
+
+        .rating-value {
+            background: #388e3c;
+            color: white;
+            padding: 3px 10px;
+            border-radius: 15px;
+            font-size: 13px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 3px;
+        }
+
+        .rating-value i {
+            font-size: 10px;
+        }
+
+        .review-count {
+            color: #888;
+            font-size: 13px;
+        }
+
+        .price-section {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 15px;
+        }
+
+        .current-price {
+            font-size: 22px;
+            font-weight: 700;
+            color: #333;
+        }
+
+        .original-price {
+            font-size: 15px;
+            color: #999;
+            text-decoration: line-through;
+        }
+
+        .discount {
+            color: #388e3c;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .size-info {
+            color: #666;
+            font-size: 13px;
+            margin-bottom: 15px;
+        }
+
+        .size-info span {
+            background: #f0f0f0;
+            padding: 3px 10px;
+            border-radius: 5px;
+            margin-right: 5px;
+        }
+
+        .add-to-cart {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, #fb641b 0%, #e85d19 100%);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: all 0.3s;
+        }
+
+        .add-to-cart:hover {
+            background: linear-gradient(135deg, #e85d19 0%, #d35400 100%);
+            transform: scale(1.02);
+        }
+
+        /* Footer */
+        .footer {
+            background: #172337;
+            color: white;
+            padding: 50px 20px 20px;
+            margin-top: 60px;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 20px;
+            color: #878787;
+            font-size: 15px;
+            text-transform: uppercase;
+        }
+
+        .footer-section a {
+            display: block;
+            color: white;
+            text-decoration: none;
+            margin-bottom: 12px;
+            font-size: 14px;
+            opacity: 0.85;
+            transition: opacity 0.3s;
+        }
+
+        .footer-section a:hover {
+            opacity: 1;
+            text-decoration: underline;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            margin-top: 30px;
+            border-top: 1px solid #454d5e;
+            color: #878787;
+            font-size: 14px;
+        }
+
+        /* Cart Modal */
+        .cart-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 400px;
+            height: 100vh;
+            background: white;
+            box-shadow: -5px 0 30px rgba(0,0,0,0.2);
+            z-index: 2000;
+            padding: 25px;
+            overflow-y: auto;
+        }
+
+        .cart-modal.active {
+            display: block;
+        }
+
+        .cart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #eee;
+        }
+
+        .cart-header h2 {
+            font-size: 22px;
+        }
+
+        .close-cart {
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: #666;
+        }
+
+        .cart-item {
+            display: flex;
+            gap: 15px;
+            padding: 15px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .cart-item img {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        .cart-item-info h4 {
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
+
+        .cart-item-info p {
+            color: #2874f0;
+            font-weight: 600;
+        }
+
+        .cart-total {
+            position: sticky;
+            bottom: 0;
+            background: white;
+            padding: 20px 0;
+            border-top: 2px solid #eee;
+            margin-top: 20px;
+        }
+
+        .cart-total h3 {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            font-size: 20px;
+        }
+
+        .checkout-btn {
+            width: 100%;
+            padding: 15px;
+            background: #fb641b;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 1500;
+        }
+
+        .overlay.active {
+            display: block;
+        }
+
+        /* Toast Notification */
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: #333;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 10px;
+            font-size: 15px;
+            z-index: 3000;
+            opacity: 0;
+            transition: all 0.4s;
+        }
+
+        .toast.show {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-wrap: wrap;
+            }
+
+            .search-bar {
+                order: 3;
+                flex-basis: 100%;
+                margin: 10px 0 0 0;
+            }
+
+            .banner h1 {
+                font-size: 32px;
+            }
+
+            .products-grid {
+                grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+                gap: 15px;
+            }
+
+            .product-image {
+                height: 200px;
+            }
+
+            .cart-modal {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">
+                <i class="fas fa-shopping-bag"></i>
+                KidsWear
+            </div>
+            <div class="search-bar">
+                <input type="text" placeholder="Search for products, brands and more..." id="searchInput">
+                <button onclick="searchProducts()"><i class="fas fa-search"></i></button>
+            </div>
+            <div class="header-icons">
+                <a href="#"><i class="fas fa-user"></i>Login</a>
+                <a href="#" class="cart-icon" onclick="toggleCart()">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count" id="cartCount">0</span>
+                    Cart
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Banner -->
+    <section class="banner">
+        <h1><i class="fas fa-child"></i> Kids Premium Collection</h1>
+        <p>Up to 70% Off on Kids Sweatshirts & Hoodies | Free Delivery on Orders Above ₹499</p>
+    </section>
+
+    <!-- Filter Section -->
+    <div class="filter-section">
+        <label><i class="fas fa-filter"></i> Filter By:</label>
+        <select id="categoryFilter" onchange="filterProducts()">
+            <option value="all">All Categories</option>
+            <option value="sweatshirt">Sweatshirts</option>
+            <option value="hoodie">Hoodies</option>
+        </select>
+        <select id="ageFilter" onchange="filterProducts()">
+            <option value="all">All Ages</option>
+            <option value="0-3">0-3 Months</option>
+            <option value="9-12">9-12 Months</option>
+            <option value="12-18">12-18 Months</option>
+            <option value="1-2">1-2 Years</option>
+            <option value="2-3">2-3 Years</option>
+            <option value="3-4">3-4 Years</option>
+            <option value="6-7">6-7 Years</option>
+            <option value="7-8">7-8 Years</option>
+            <option value="8-9">8-9 Years</option>
+            <option value="10-11">10-11 Years</option>
+            <option value="11-12">11-12 Years</option>
+            <option value="12-13">12-13 Years</option>
+        </select>
+        <select id="sortFilter" onchange="sortProducts()">
+            <option value="default">Sort By</option>
+            <option value="price-low">Price: Low to High</option>
+            <option value="price-high">Price: High to Low</option>
+            <option value="rating">Top Rated</option>
+        </select>
+        <button onclick="resetFilters()"><i class="fas fa-redo"></i> Reset</button>
+    </div>
+
+    <!-- Products Container -->
+    <div class="products-container">
+        <h2 class="section-title"><i class="fas fa-fire"></i> Trending Products</h2>
+        <div class="products-grid" id="productsGrid">
+            <!-- Products will be inserted here by JavaScript -->
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>About</h3>
+                <a href="#">Contact Us</a>
+                <a href="#">About Us</a>
+                <a href="#">Careers</a>
+                <a href="#">Press</a>
+            </div>
+            <div class="footer-section">
+                <h3>Help</h3>
+                <a href="#">Payments</a>
+                <a href="#">Shipping</a>
+                <a href="#">Returns</a>
+                <a href="#">FAQ</a>
+            </div>
+            <div class="footer-section">
+                <h3>Policy</h3>
+                <a href="#">Return Policy</a>
+                <a href="#">Terms of Use</a>
+                <a href="#">Security</a>
+                <a href="#">Privacy</a>
+            </div>
+            <div class="footer-section">
+                <h3>Social</h3>
+                <a href="#"><i class="fab fa-facebook"></i> Facebook</a>
+                <a href="#"><i class="fab fa-twitter"></i> Twitter</a>
+                <a href="#"><i class="fab fa-instagram"></i> Instagram</a>
+                <a href="#"><i class="fab fa-youtube"></i> YouTube</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p> KidsWear Store. All Rights Reserved. | Made with <i class="fas fa-heart" style="color:#ff4444"></i> for Kids</p>
+        </div>
+    </footer>
+
+    <!-- Cart Modal -->
+    <div class="overlay" id="overlay" onclick="toggleCart()"></div>
+    <div class="cart-modal" id="cartModal">
+        <div class="cart-header">
+            <h2><i class="fas fa-shopping-cart"></i> Your Cart</h2>
+            <button class="close-cart" onclick="toggleCart()">&times;</button>
+        </div>
+        <div id="cartItems"></div>
+        <div class="cart-total">
+            <h3>Total: <span id="cartTotal">₹0</span></h3>
+            <button class="checkout-btn" onclick="checkout()">Proceed to Checkout</button>
+        </div>
+    </div>
+
+    <!-- Toast -->
+    <div class="toast" id="toast"></div>
+
+    <script>
+        // Product Data with your images
+        const products = [
+            {
+                id: 1,
+                name: "Full Sleeve Printed Sweatshirt - Panda Design",
+                brand: "Panda CAF",
+                image: "https://img.fkcdn.com/image/xif0q/sweatshirt/9/z/g/7-8-years-boys-girls-full-sleeve-printed-sweatshirt-panda-caf-original-imahhrffmkvtpjyk.jpeg",
+                price: 499,
+                originalPrice: 1299,
+                discount: 62,
+                rating: 4.5,
+                reviews: 2341,
+                category: "sweatshirt",
+                age: "7-8",
+                badge: "sale"
+            },
+            {
+                id: 2,
+                name: "Full Sleeve Sweatshirt - Twolover Classic",
+                brand: "Twolover",
+                image: "https://img.fkcdn.com/image/xif0q/sweatshirt/v/s/h/2-3-years-boys-girls-full-sleeve-sweatshirt-twolover-original-imahh3csaahg6uxd.jpeg",
+                price: 399,
+                originalPrice: 999,
+                discount: 60,
+                rating: 4.2,
+                reviews: 1856,
+                category: "sweatshirt",
+                age: "2-3",
+                badge: "sale"
+            },
+            {
+                id: 3,
+                name: "Printed Sweatshirt - Twolover Kids",
+                brand: "Twolover",
+                image: "https://img.fkcdn.com/image/xif0q/sweatshirt/p/y/1/12-18-months-printed-sweatshirt-twolover-original-imahgnmcaupysf6p.jpeg",
+                price: 349,
+                originalPrice: 899,
+                discount: 61,
+                rating: 4.0,
+                reviews: 987,
+                category: "sweatshirt",
+                age: "12-18",
+                badge: "new"
+            },
+            {
+                id: 4,
+                name: "Full Sleeve Sweatshirt - Twolover Premium",
+                brand: "Twolover",
+                image: "https://img.fkcdn.com/image/xif0q/sweatshirt/u/n/x/2-3-years-boys-girls-full-sleeve-sweatshirt-twolover-original-imahh5kybcwggg8r.jpeg",
+                price: 449,
+                originalPrice: 1099,
+                discount: 59,
+                rating: 4.3,
+                reviews: 1567,
+                category: "sweatshirt",
+                age: "2-3",
+                badge: "sale"
+            },
+            {
+                id: 5,
+                name: "Full Sleeve Sweatshirt - Twolover Style",
+                brand: "Twolover",
+                image: "https://img.fkcdn.com/image/xif0q/sweatshirt/z/7/i/2-3-years-boys-girls-full-sleeve-twolover-original-imahh4cwqggycbxf.jpeg",
+                price: 379,
+                originalPrice: 949,
+                discount: 60,
+                rating: 4.1,
+                reviews: 1123,
+                category: "sweatshirt",
+                age: "2-3",
+                badge: "sale"
+            },
+            {
+                id: 6,
+                name: "Full Sleeve Printed Sweatshirt - Twolover",
+                brand: "Twolover",
+                image: "https://img.fkcdn.com/image/xif0q/sweatshirt/z/j/m/2-3-years-boys-girls-full-sleeve-printed-sweatshirt-twolover-original-imahhf8vhycdfjgt.jpeg",
+                price: 429,
+                originalPrice: 1049,
+                discount: 59,
+                rating: 4.4,
+                reviews: 2034,
+                category: "sweatshirt",
+                age: "2-3",
+                badge: "sale"
+            },
+            {
+                id: 7,
+                name: "Full Sleeve Printed Sweatshirt - Twolover",
+                brand: "Twolover",
+                image: "https://img.fkcdn.com/image/xif0q/sweatshirt/u/l/e/2-3-years-boys-girls-full-sleeve-printed-sweatshirt-twolover-original-imahhf7y96tcgh2g.jpeg",
+                price: 459,
+                originalPrice: 1149,
+                discount: 60,
+                rating: 4.6,
+                reviews: 2678,
+                category: "sweatshirt",
+                age: "2-3",
+                badge: "sale"
+            },
+            {
+                id: 8,
+                name: "Full Sleeve Sweatshirt - Twolover Soft",
+                brand: "Twolover",
+                image: "https://img.fkcdn.com/image/xif0q/sweatshirt/s/p/i/1-2-years-boys-girls-full-sleeve-sweatshirt-twolover-original-imahhrf4ehghq8y6.jpeg",
+                price: 349,
+                originalPrice: 849,
+                discount: 59,
+                rating: 4.2,
+                reviews: 1456,
+                category: "sweatshirt",
+                age: "1-2",
+                badge: "new"
+            },
+            {
+                id: 9,
+                name: "Full Sleeve Sweatshirt - Twolover Comfort",
+                brand: "Twolover",
+                image: "https://img.fkcdn.com/image/xif0q/sweatshirt/2/y/h/2-3-years-boys-girls-full-sleeve-sweatshirt-twolover-original-imahh4d3cgqmkcac.jpeg",
+                price: 399,
+                originalPrice: 999,
+                discount: 60,
+                rating: 4.3,
+                reviews: 1789,
+                category: "sweatshirt",
+                age: "2-3",
+                badge: "sale"
+            },
+            {
+                id: 10,
+                name: "Printed Sweatshirt - Twolover Baby",
+                brand: "Twolover",
+                image: "https://img.fkcdn.com/image/xif0q/sweatshirt/e/y/r/9-12-months-printed-sweatshirt-twolover-original-imahg8dtyztvpcv8.jpeg",
+                price: 299,
+                originalPrice: 749,
+                discount: 60,
+                rating: 3.9,
+                reviews: 678,
+                category: "sweatshirt",
+                age: "9-12",
+                badge: "new"
+            },
+            {
+                id: 11,
+                name: "Kids Sweatshirts Combo - Red & Grey",
+                brand: "Twolover",
+                image: "https://img.fkcdn.com/image/xif0q/sweatshirt/s/e/x/0-3-months-kids-sweatshirts-combo-red-grey-twolover-original-imahgch86yhtfc3d.jpeg",
+                price: 599,
+                originalPrice: 1499,
+                discount: 60,
+                rating: 4.5,
+                reviews: 3124,
+                category: "sweatshirt",
+                age: "0-3",
+                badge: "sale"
+            },
+            {
+                id: 12,
+                name: "Full Sleeve Printed Sweatshirt - Panda",
+                brand: "Panda CAF",
+                image: "https://img.fkcdn.com/image/xif0q/sweatshirt/x/h/2/2-3-years-boys-girls-full-sleeve-printed-sweatshirt-panda-caf-original-imahhf7juxthv2kk.jpeg",
+                price: 479,
+                originalPrice: 1199,
+                discount: 60,
+                rating: 4.7,
+                reviews: 2890,
+                category: "sweatshirt",
+                age: "2-3",
+                badge: "sale"
+            },
+            {
+                id: 13,
+                name: "Full Sleeve Sweatshirt - Twolover Trendy",
+                brand: "Twolover",
+                image: "https://img.fkcdn.com/image/xif0q/sweatshirt/8/n/a/3-4-years-boys-girls-full-sleeve-sweatshirt-twolover-original-imahh4defhtswdys.jpeg",
+                price: 449,
+                originalPrice: 1099,
+                discount: 59,
+                rating: 4.4,
+                reviews: 1987,
+                category: "sweatshirt",
+                age: "3-4",
+                badge: "sale"
+            },
+            {
+                id: 14,
+                name: "Printed Sweatshirt - Twolover Cute",
+                brand: "Twolover",
+                image: "https://img.fkcdn.com/image/xif0q/sweatshirt/r/n/2/1-2-years-printed-sweatshirt-twolover-original-imahgmr6fg8zhjtd.jpeg",
+                price: 329,
+                originalPrice: 799,
+                discount: 59,
+                rating: 4.1,
+                reviews: 1234,
+                category: "sweatshirt",
+                age: "1-2",
+                badge: "new"
+            },
+            {
+                id: 15,
+                name: "Full Sleeve Sweatshirt - Twolover Fancy",
+                brand: "Twolover",
+                image: "https://img.fkcdn.com/image/xif0q/sweatshirt/y/m/o/2-3-years-boys-girls-full-sleeve-sweatshirt-twolover-original-imahh5hzwvkffzmx.jpeg",
+                price: 419,
+                originalPrice: 1049,
+                discount: 60,
+                rating: 4.3,
+                reviews: 1678,
+                category: "sweatshirt",
+                age: "2-3",
+                badge: "sale"
+            },
+            {
+                id: 16,
+                name: "Full Sleeve Printed Sweatshirt - Panda Cute",
+                brand: "Panda CAF",
+                image: "https://img.fkcdn.com/image/xif0q/sweatshirt/s/q/z/2-3-years-boys-girls-full-sleeve-printed-sweatshirt-panda-caf-original-imahhf7yzvrupwbs.jpeg",
+                price: 459,
+                originalPrice: 1149,
+                discount: 60,
+                rating: 4.6,
+                reviews: 2456,
+                category: "sweatshirt",
+                age: "2-3",
+                badge: "sale"
+            },
+            {
+                id: 17,
+                name: "Sweetshirt for Kids Hoodie - Bera 4 Dill",
+                brand: "Twolover",
+                image: "https://img.fkcdn.com/image/xif0q/sweatshirt/n/f/y/8-9-years-sweetshirt-for-kisd-hoodie-bera-4-dill-twolover-original-imahzay8gkpzhhwh.jpeg",
+                price: 699,
+                originalPrice: 1699,
+                discount: 59,
+                rating: 4.8,
+                reviews: 4567,
+                category: "hoodie",
+                age: "8-9",
+                badge: "sale"
+            },
+            {
+                id: 18,
+                name: "Full Sleeve Sweatshirt - Twolover Warm",
+                brand: "Twolover",
+                image: "https://img.fkcdn.com/image/xif0q/sweatshirt/d/u/7/2-3-years-boys-girls-full-sleeve-sweatshirt-twolover-original-imahh8whdh6ugnxn.jpeg",
+                price: 439,
+                originalPrice: 1099,
+                discount: 60,
+                rating: 4.4,
+                reviews: 2134,
+                category: "sweatshirt",
+                age: "2-3",
+                badge: "sale"
+            },
+            {
+                id: 19,
+                name: "Sweetshirt for Kids Hoodie - Bera 4 Dill",
+                brand: "Twolover",
+                image: "https://img.fkcdn.com/image/xif0q/sweatshirt/k/o/m/6-7-years-sweetshirt-for-kisd-hoodie-bera-4-dill-twolover-original-imahzayecw8z9aqt.jpeg",
+                price: 649,
+                originalPrice: 1599,
+                discount: 59,
+                rating: 4.7,
+                reviews: 3890,
+                category: "hoodie",
+                age: "6-7",
+                badge: "sale"
+            },
+            {
+                id: 20,
+                name: "Full Sleeve Sweatshirt - Twolover Cool",
+                brand: "Twolover",
+                image: "https://img.fkcdn.com/image/xif0q/sweatshirt/y/u/v/3-4-years-boys-girls-full-sleeve-sweatshirt-twolover-original-imahh8xcq4yfxf7t.jpeg",
+                price: 469,
+                originalPrice: 1169,
+                discount: 60,
+                rating: 4.5,
+                reviews: 2345,
+                category: "sweatshirt",
+                age: "3-4",
+                badge: "sale"
+            },
+            {
+                id: 21,
+                name: "Sweetshirt for Kids Hoodie - Bera 4 Dill",
+                brand: "Twolover",
+                image: "https://img.fkcdn.com/image/xif0q/sweatshirt/3/s/r/11-12-years-sweetshirt-for-kisd-hoodie-bera-4-dill-twolover-original-imahzayez88bhkdm.jpeg",
+                price: 749,
+                originalPrice: 1849,
+                discount: 59,
+                rating: 4.9,
+                reviews: 5234,
+                category: "hoodie",
+                age: "11-12",
+                badge: "sale"
+            },
+            {
+                id: 22,
+                name: "Full Sleeve Sweatshirt - Twolover Active",
+                brand: "Twolover",
+                image: "https://img.fkcdn.com/image/xif0q/sweatshirt/7/k/j/2-3-years-boys-girls-full-sleeve-sweatshirt-twolover-original-imahh9vgjmghbqme.jpeg",
+                price: 389,
+                originalPrice: 969,
+                discount: 60,
+                rating: 4.2,
+                reviews: 1567,
+                category: "sweatshirt",
+                age: "2-3",
+                badge: "new"
+            },
+            {
+                id: 23,
+                name: "Full Sleeve Sweatshirt - Twolover Cozy",
+                brand: "Twolover",
+                image: "https://img.fkcdn.com/image/xif0q/sweatshirt/k/s/z/1-2-years-boys-girls-full-sleeve-sweatshirt-twolover-original-imahgfw9n28bgtfe.jpeg",
+                price: 359,
+                originalPrice: 899,
+                discount: 60,
+                rating: 4.0,
+                reviews: 987,
+                category: "sweatshirt",
+                age: "1-2",
+                badge: "new"
+            },
+            {
+                id: 24,
+                name: "Sweetshirt for Kids Hoodie - Bera 4 Dill",
+                brand: "Twolover",
+                image: "https://img.fkcdn.com/image/xif0q/sweatshirt/a/6/w/7-8-years-sweetshirt-for-kisd-hoodie-bera-4-dill-twolover-original-imahzaycpngfzpzg.jpeg",
+                price: 679,
+                originalPrice: 1679,
+                discount: 60,
+                rating: 4.8,
+                reviews: 4123,
+                category: "hoodie",
+                age: "7-8",
+                badge: "sale"
+            },
+            {
+                id: 25,
+                name: "Full Sleeve Sweatshirt - Twolover Fresh",
+                brand: "Twolover",
+                image: "https://img.fkcdn.com/image/xif0q/sweatshirt/x/2/z/2-3-years-boys-girls-full-sleeve-sweatshirt-twolover-original-imahh8x9msdsgenb.jpeg",
+                price: 409,
+                originalPrice: 1019,
+                discount: 60,
+                rating: 4.3,
+                reviews: 1876,
+                category: "sweatshirt",
+                age: "2-3",
+                badge: "sale"
+            },
+            {
+                id: 26,
+                name: "Full Sleeve Sweatshirt - Twolover Baby Soft",
+                brand: "Twolover",
+                image: "https://img.fkcdn.com/image/xif0q/sweatshirt/b/d/u/12-18-months-boys-girls-full-sleeve-sweatshirt-twolover-original-imahh9vdcggsatn4.jpeg",
+                price: 319,
+                originalPrice: 799,
+                discount: 60,
+                rating: 4.1,
+                reviews: 876,
+                category: "sweatshirt",
+                age: "12-18",
+                badge: "new"
+            },
+            {
+                id: 27,
+                name: "Sweetshirt for Kids Hoodie - Bera 4 Dill",
+                brand: "Twolover",
+                image: "https://img.fkcdn.com/image/xif0q/sweatshirt/k/3/s/12-13-years-sweetshirt-for-kisd-hoodie-bera-4-dill-twolover-original-imahzbexe8yw3bzq.jpeg",
+                price: 799,
+                originalPrice: 1999,
+                discount: 60,
+                rating: 4.9,
+                reviews: 6789,
+                category: "hoodie",
+                age: "12-13",
+                badge: "sale"
+            },
+            {
+                id: 28,
+                name: "Sweetshirt for Kids Hoodie - Bera 4 Dill",
+                brand: "Twolover",
+                image: "https://img.fkcdn.com/image/xif0q/sweatshirt/z/q/m/8-9-years-sweetshirt-for-kisd-hoodie-bera-4-dill-twolover-original-imahzbgbjfay473f.jpeg",
+                price: 719,
+                originalPrice: 1799,
+                discount: 60,
+                rating: 4.7,
+                reviews: 3456,
+                category: "hoodie",
+                age: "8-9",
+                badge: "sale"
+            },
+            {
+                id: 29,
+                name: "Sweetshirt for Kids Hoodie - Bera 4 Dill",
+                brand: "Twolover",
+                image: "https://img.fkcdn.com/image/xif0q/sweatshirt/y/c/f/10-11-years-sweetshirt-for-kisd-hoodie-bera-4-dill-twolover-original-imahzay8xeasffpg.jpeg",
+                price: 769,
+                originalPrice: 1899,
+                discount: 59,
+                rating: 4.8,
+                reviews: 4567,
+                category: "hoodie",
+                age: "10-11",
+                badge: "sale"
+            }
+        ];
+
+        let cart = [];
+        let currentProducts = [...products];
+
+        // Generate Star Rating HTML
+        function generateStars(rating) {
+            let starsHtml = '';
+            const fullStars = Math.floor(rating);
+            const hasHalf = rating % 1 >= 0.5;
+
+            for (let i = 0; i < 5; i++) {
+                if (i < fullStars) {
+                    starsHtml += '<i class="fas fa-star filled"></i>';
+                } else if (i === fullStars && hasHalf) {
+                    starsHtml += '<i class="fas fa-star-half-alt filled"></i>';
+                } else {
+                    starsHtml += '<i class="far fa-star"></i>';
+                }
+            }
+            return starsHtml;
+        }
+
+        // Render Products
+        function renderProducts(productsToRender) {
+            const grid = document.getElementById('productsGrid');
+            grid.innerHTML = productsToRender.map(product => `
+                <div class="product-card" data-category="${product.category}" data-age="${product.age}">
+                    <div class="product-image">
+                        <span class="badge badge-${product.badge}">${product.badge === 'sale' ? 'SALE' : 'NEW'}</span>
+                        <button class="wishlist-btn" onclick="addToWishlist(${product.id})">
+                            <i class="far fa-heart"></i>
+                        </button>
+                        <img src="${product.image}" alt="${product.name}" loading="lazy">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-brand">${product.brand}</div>
+                        <div class="product-name">${product.name}</div>
+                        <div class="rating-section">
+                            <div class="stars">
+                                ${generateStars(product.rating)}
+                            </div>
+                            <span class="rating-value">
+                                ${product.rating} <i class="fas fa-star"></i>
+                            </span>
+                            <span class="review-count">(${product.reviews.toLocaleString()} reviews)</span>
+                        </div>
+                        <div class="price-section">
+                            <span class="current-price">₹${product.price}</span>
+                            <span class="original-price">₹${product.originalPrice}</span>
+                            <span class="discount">${product.discount}% off</span>
+                        </div>
+                        <div class="size-info">
+                            Size: <span>${product.age} ${product.age.includes('month') ? '' : 'Years'}</span>
+                        </div>
+                        <button class="add-to-cart" onclick="addToCart(${product.id})">
+                            <i class="fas fa-shopping-cart"></i> Add to Cart
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Filter Products
+        function filterProducts() {
+            const category = document.getElementById('categoryFilter').value;
+            const age = document.getElementById('ageFilter').value;
+
+            currentProducts = products.filter(product => {
+                const categoryMatch = category === 'all' || product.category === category;
+                const ageMatch = age === 'all' || product.age === age;
+                return categoryMatch && ageMatch;
+            });
+
+            renderProducts(currentProducts);
+        }
+
+        // Sort Products
+        function sortProducts() {
+            const sort = document.getElementById('sortFilter').value;
+            let sorted = [...currentProducts];
+
+            switch(sort) {
+                case 'price-low':
+                    sorted.sort((a, b) => a.price - b.price);
+                    break;
+                case 'price-high':
+                    sorted.sort((a, b) => b.price - a.price);
+                    break;
+                case 'rating':
+                    sorted.sort((a, b) => b.rating - a.rating);
+                    break;
+            }
+
+            renderProducts(sorted);
+        }
+
+        // Reset Filters
+        function resetFilters() {
+            document.getElementById('categoryFilter').value = 'all';
+            document.getElementById('ageFilter').value = 'all';
+            document.getElementById('sortFilter').value = 'default';
+            currentProducts = [...products];
+            renderProducts(currentProducts);
+        }
+
+        // Search Products
+        function searchProducts() {
+            const query = document.getElementById('searchInput').value.toLowerCase();
+            if (!query) {
+                currentProducts = [...products];
+                renderProducts(currentProducts);
+                return;
+            }
+
+            currentProducts = products.filter(product => 
+                product.name.toLowerCase().includes(query) || 
+                product.brand.toLowerCase().includes(query)
+            );
+            renderProducts(currentProducts);
+        }
+
+        // Add to Cart
+        function addToCart(productId) {
+            const product = products.find(p => p.id === productId);
+            const existingItem = cart.find(item => item.id === productId);
+
+            if (existingItem) {
+                existingItem.quantity++;
+            } else {
+                cart.push({ ...product, quantity: 1 });
+            }
+
+            updateCart();
+            showToast(`${product.name} added to cart!`);
+        }
+
+        // Add to Wishlist
+        function addToWishlist(productId) {
+            showToast('Added to Wishlist!');
+        }
+
+        // Update Cart
+        function updateCart() {
+            const cartCount = document.getElementById('cartCount');
+            const cartItems = document.getElementById('cartItems');
+            const cartTotal = document.getElementById('cartTotal');
+
+            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            cartCount.textContent = totalItems;
+
+            if (cart.length === 0) {
+                cartItems.innerHTML = '<p style="text-align:center; color:#999; padding:40px 0;"><i class="fas fa-shopping-cart" style="font-size:48px; margin-bottom:15px; display:block;"></i>Your cart is empty</p>';
+                cartTotal.textContent = '₹0';
+                return;
+            }
+
+            cartItems.innerHTML = cart.map(item => `
+                <div class="cart-item">
+                    <img src="${item.image}" alt="${item.name}">
+                    <div class="cart-item-info" style="flex:1;">
+                        <h4>${item.name}</h4>
+                        <p>₹${item.price} x ${item.quantity}</p>
+                        <div style="margin-top:8px;">
+                            <button onclick="updateQuantity(${item.id}, -1)" style="padding:2px 8px; cursor:pointer;">-</button>
+                            <span style="margin:0 10px;">${item.quantity}</span>
+                            <button onclick="updateQuantity(${item.id}, 1)" style="padding:2px 8px; cursor:pointer;">+</button>
+                            <button onclick="removeFromCart(${item.id})" style="margin-left:15px; color:#ff4444; background:none; border:none; cursor:pointer;"><i class="fas fa-trash"></i></button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+
+            const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            cartTotal.textContent = '₹' + total.toLocaleString();
+        }
+
+        // Update Quantity
+        function updateQuantity(productId, change) {
+            const item = cart.find(item => item.id === productId);
+            if (item) {
+                item.quantity += change;
+                if (item.quantity <= 0) {
+                    removeFromCart(productId);
+                } else {
+                    updateCart();
+                }
+            }
+        }
+
+        // Remove from Cart
+        function removeFromCart(productId) {
+            cart = cart.filter(item => item.id !== productId);
+            updateCart();
+            showToast('Item removed from cart');
+        }
+
+        // Toggle Cart
+        function toggleCart() {
+            document.getElementById('cartModal').classList.toggle('active');
+            document.getElementById('overlay').classList.toggle('active');
+        }
+
+        // Checkout
+        function checkout() {
+            if (cart.length === 0) {
+                showToast('Your cart is empty!');
+                return;
+            }
+            showToast('Proceeding to checkout...');
+        }
+
+        // Show Toast
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            toast.textContent = message;
+            toast.classList.add('show');
+            setTimeout(() => toast.classList.remove('show'), 3000);
+        }
+
+        // Search on Enter key
+        document.getElementById('searchInput')?.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') searchProducts();
+        });
+
+        // Initial Render
+        renderProducts(products);
+    </script>
+</body>
+</html>
